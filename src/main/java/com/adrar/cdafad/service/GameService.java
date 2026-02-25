@@ -1,9 +1,6 @@
 package com.adrar.cdafad.service;
 
 import com.adrar.cdafad.entity.Game;
-import com.adrar.cdafad.entity.Manufacturer;
-import com.adrar.cdafad.exception.manufacturer.ManufacturerIsNotExistsException;
-import com.adrar.cdafad.exception.manufacturer.ManufacturerListIsEmptyException;
 import com.adrar.cdafad.repository.GameRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
