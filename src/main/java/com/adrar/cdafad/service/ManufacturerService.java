@@ -1,6 +1,9 @@
 package com.adrar.cdafad.service;
 
 import com.adrar.cdafad.entity.Manufacturer;
+import com.adrar.cdafad.exception.manufacturer.ManufacturerIsNotExistsException;
+import com.adrar.cdafad.exception.manufacturer.ManufacturerIsPresentException;
+import com.adrar.cdafad.exception.manufacturer.ManufacturerListIsEmptyException;
 import com.adrar.cdafad.repository.ManufacturerRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +21,7 @@ public class ManufacturerService {
     public Manufacturer createManufacturer(Manufacturer manufacturer) throws Exception {
 
         if(this.manufacturerRepository.existsByName(manufacturer.getName())) {
-            throw new Exception("Le Manufacturer avec le  name " + manufacturer.getName() + " existe déja");
+            throw new ManufacturerIsPresentException(manufacturer.getName());
         }
         return manufacturerRepository.save(manufacturer);
     }
@@ -29,7 +32,7 @@ public class ManufacturerService {
         Optional<Manufacturer> manufacturer = manufacturerRepository.findById(id);
         //Test si il n'existe pas
         if (manufacturer.isEmpty()) {
-            throw new Exception("Le Manufacturer n'existe pas");
+            throw new ManufacturerIsNotExistsException(id);
         }
         return manufacturer.get();
     }
@@ -39,7 +42,7 @@ public class ManufacturerService {
     {
         //Test si la liste est vide
         if (this.manufacturerRepository.count() == 0) {
-            throw new Exception("La liste des Manufacturer est vide");
+            throw new ManufacturerListIsEmptyException();
         }
         return manufacturerRepository.findAll();
     }
