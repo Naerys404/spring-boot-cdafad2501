@@ -1,7 +1,6 @@
 package com.adrar.cdafad.controller;
 
 
-import com.adrar.cdafad.entity.Category;
 import com.adrar.cdafad.entity.Game;
 import org.springframework.http.ResponseEntity;
 import com.adrar.cdafad.service.GameService;
@@ -34,6 +33,5 @@ public class GameController {
         Iterable<Game> games = this.gameService.getAllGames();
         return new ResponseEntity<>(games, HttpStatus.OK);
     }
-
 
 }
